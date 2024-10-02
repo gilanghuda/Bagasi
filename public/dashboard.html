@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+</head>
+<body>
+    <h1 id="welcome">HALLO no one</h1>
+    <button id="logout" onclick="logout()"> logout </button>
+</body>
+<script>
+    const start = async () => {
+        try{
+        const respon = await fetch ('http://localhost:3001/user')
+        const data = await respon.json()
+        console.log(data)
+        document.getElementById("welcome").innerHTML = `Hallo ${data.payload.datas[0].email}`
+    }
+    catch(eror){
+        console.log(eror)
+    }
+    }
+    const logout = async()=>{
+        try {
+            const respon = await fetch('http://localhost:3001/logout')
+            window.location.href = 'http://localhost:3001/login'
+        } catch (error) {
+            console.log(error)
+        }
+    }
+    start()
+</script>
+</html>

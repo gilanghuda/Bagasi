@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+<body>
+    <form id ="signUp-form" method="post">
+        <label>
+            Email : <input type="text" name="email" id="email">
+        </label>
+        <label>
+            Password : <input type="password" name="password" id="password">
+        </label>
+        <button id="btn"  type="submit">SignUp</button>
+    </form>
+    <p id="eror"></p>
+</body>
+<script>
+    document.getElementById("signUp-form").addEventListener("submit", async (event)=>{
+        event.preventDefault()
+        const email = document.getElementById('email').value
+        const password = document.getElementById('password').value
+        const response = await fetch('http://localhost:3001/register', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email, password })
+        })
+        const res = await response.json()
+        if (res.message){
+            window.location.href = "http://localhost:3001/login"
+        }
+        else {
+            document.getElementById("eror").innerHTML = res.error
+            console.log("eror bang  "+ res.error)
+        }
+    })
+</script>
+</html>
