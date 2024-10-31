@@ -4,12 +4,7 @@ const resp = (statusCode, data, message, res) => {
             status_code: statusCode,
             datas: data        
         },
-          message: message,
-        pagination: {
-            prev:"",
-            next:"",
-            max:""
-        }
+          message: message
     })
 }
 

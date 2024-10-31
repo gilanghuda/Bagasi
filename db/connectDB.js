@@ -5,11 +5,11 @@ const connectDB = async () => {
   const pool = new Pool(config)
 
   try {
-    const client = await pool.connect() // Use async/await to connect
-    console.log("Connected to PostgreSQL database")
-    client.release() // Only release the client if the connection is successful
+    const client = await pool.connect() 
+    console.log("Connected to Bagasi database")
+    client.release() // hanya di release kalo client berhasil connect
   } catch (err) {
-    console.error({ err }) // Log the error
+    console.error({ err }) 
   }
 }
 

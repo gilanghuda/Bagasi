@@ -10,12 +10,13 @@ const {
   insertRecord,
 } = require("../utils/sqlFunctions")
 
+//untuk generate jwt token yang nantinya disimpan di browser client sebagai cookies
 const generateAccessToken = (userid) => {
   return jwt.sign({ userid }, process.env.JWT_SECRET, { expiresIn: "7d" })
 }
 
 const register = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password, nama, alamat, tanggal_lahir } = req.body //mengambil body request api
   if (!email || !password) {
     resp(401, "", "email or password field cant be empty", res)
     return
@@ -24,20 +25,23 @@ const register = async (req, res) => {
     resp(401, "", "invalid email", res)
     return
   }
-  const salt = await bcrypt.genSalt(10)
-  const hashedPassword = await bcrypt.hash(password, salt)
+  const salt = await bcrypt.genSalt(10) //menambahkan fungsi salt untuk menambahkan keamanan token
+  const hashedPassword = await bcrypt.hash(password, salt) //hashing password user sebelum disimpan ke database
   const user = {
     userid: uuidv4(),
     email,
     password: hashedPassword,
+    nama,
+    alamat,
+    tanggal_lahir,
   }
   try {
-    await createTable(userSchema)
-    const userAlreadyExists = await checkRecordExists("users", "email", email)
+    await createTable(userSchema) //create tabel jika tabel belum ada
+    const userAlreadyExists = await checkRecordExists("users", "email", email) //check database apakah user udah terdaftar atau belum
     if (userAlreadyExists) {
-      resp(409, "", "user already exist", res)
+      resp(409, "", "user already exist", res) //ketika user telah terdaftar, user tidak dapat ditambahkan
     } else {
-      await insertRecord("users", user)
+      await insertRecord("users", user) //menambahkan user ketika user belum ada di database
       resp(201, user, "user created succesfully", res)
     }
   } catch (error) {
@@ -46,18 +50,18 @@ const register = async (req, res) => {
 }
 
 const login = async (req, res) => {
-  const { email, password } = req.body
+  const { email, password } = req.body //mengambil body request api
   if (!email || !password) {
     resp(401, "", "email or password field cant be empty", res)
-    return
+    return //method berhenti ketika email atau password empty
   }
 
   try {
-    const existingUser = await checkRecordExists("users", "email", email)
+    const existingUser = await checkRecordExists("users", "email", email) //memeriksa apakah user dengan email tertentu exist di database
 
     if (existingUser) {
       if (!existingUser.password) {
-        resp(401, "", "invalid credentials", res)
+        resp(401, "", "invalid credentials", res)//ketika user tersedia namun password tidak ada, kode berhenti
         return
       }
 
