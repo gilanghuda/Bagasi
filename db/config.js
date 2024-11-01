@@ -4,6 +4,6 @@ const config = {
     host: process.env.HOST,
     password: process.env.PASSWORD,
     database: process.env.DATABASE,
-    port: process.env.DB_PORT || 5432,
+    port: +(process.env.DB_PORT || 5432),
   }
   module.exports = config
