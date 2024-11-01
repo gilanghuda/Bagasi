@@ -8,7 +8,7 @@ const connectDB = async () => {
   try {
     const client = await pool.connect() 
     console.log("Connected to Bagasi database")
-    // client.release() // hanya di release kalo client berhasil connect
+    client.release() // hanya di release  kalo client berhasil connect
   } catch (err) {
     console.error({ err }) 
   }
