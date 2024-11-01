@@ -1,26 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 import plugin from 'tailwindcss/plugin';
-export const content = ['./public/**/*.{html,js}', './index.html', './profile.html', './navbar.html'];
+export const content = ['./public/**/*.{html,js}'];
 export const theme = {
   extend: {
     colors: {
       transparent: 'transparent',
       current: 'currentColor',
       'white': '#ffffff',
-      'purple': '#3f3cbb',
-      'midnight': '#121063',
-      'metal': '#565584',
-      'tahiti': '#3ab7bf',
-      'silver': '#ecebff',
-      'bubble-gum': '#ff77e9',
-      'bermuda': '#78dcca',
-      'primary1': '#c86b85',
-      'primary2': '#E6A4B4',
-      'primary3': '#F3D7CA',
-      'primary4': '#F5EEE6'
+      'primary': '#c86b85',
+      'secondary': '#E6A4B4',
+      'tertiary': '#F3D7CA',
+      'quaternary': '#F5EEE6'
     },
     fontFamily: {
       'montserrat': ['Montserrat', 'sans-serif'],
+    },
+    borderColor: { 
+      'secondary': 'rgb(230 164 180 / var(--tw-border-opacity))', 
+      'primary': 'rgb(200, 107, 133 / var(--tw-border-opacity))'
     },
     
   },

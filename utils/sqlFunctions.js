@@ -54,7 +54,7 @@ const insertRecord = (tableName, record) => {
   })
 }
 
-const displayRecord = (tablename, uuid) => {
+const displayRecord = (tablename, uuid, res) => {
   return new Promise((resolve, reject) => {  
     let id = "userid"
     if (tablename === 'unggahan') id = 'user_uuid'
@@ -64,7 +64,7 @@ const displayRecord = (tablename, uuid) => {
       if (error) {
         reject(resp(401, error, "An error occurred", res))
       } else {
-        resolve(resp(200, result.rows, token, res))
+        resolve(resp(200, result.rows, "succes", res))
       }
     })
   })
@@ -98,12 +98,13 @@ VALUES ('${user_uuid}', '${keterangan}', ST_GeomFromText('POINT(${lng} ${lat})',
 const findNearestUnggahan = (lng, lat, limit,res)=>{
   return new Promise((resolve, reject)=>{
     const query = `SELECT 
-        user_uuid, keterangan, 
+        nama, tanggal_lahir, keterangan, userid, alamat, no_hp,
         ST_Distance(
           geom::geography, 
           ST_GeogFromText('SRID=4326;POINT(${lng} ${lat})')
         ) AS distance_in_meters
-      FROM unggahan
+      FROM unggahan, users
+      WHERE users.userid = unggahan.user_uuid AND unggahan.is_active = 'true'
       ORDER BY distance_in_meters ASC
       LIMIT ${limit};`
       pool.query(query, (error, result) =>{
@@ -143,6 +144,25 @@ const userIsActive = async (user_uuid, active)=>{
   })
 }
 
+const updateUser = (user_uuid, nama, email, alamat, tanggalLahir, noWa, bank, noRek)=>{
+  return new Promise((resolve, reject) => {
+    const query = `
+    UPDATE users 
+    SET nama=$1, email = $2, alamat = $3, tanggal_lahir = $4, no_hp = $5, bank = $6, no_rekening = $7 
+    WHERE userid = $8
+    RETURNING *;
+  `
+  const values = [nama, email ,alamat, tanggalLahir, noWa, bank, noRek, user_uuid];
+     pool.query(query, values, (error, result) =>{
+      if (error) {
+        reject(error)
+      } else {
+        resolve(result.rows)
+      }
+    })
+  })
+}
+
 module.exports = {
   createTable,
   checkRecordExists,
@@ -151,4 +171,11 @@ module.exports = {
   findNearestUnggahan,
   postUnggahan,
   userIsActive,
+  updateUser,
 }
+
+module.exports.updateUserPict = async function (user_id, profile) {
+    await pool.query("update users set profile = $1 where userid = $2", [profile, user_id])
+} 
+
+module.exports.pool = pool

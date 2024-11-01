@@ -1,4 +1,4 @@
-const express =  require("express")
+const express = require("express")
 const dotenv = require("dotenv")
 dotenv.config()
 const cors = require("cors")
@@ -10,7 +10,10 @@ const {createTable,
   insertRecord,
   findNearestUnggahan,
   postUnggahan,
-  userIsActive
+  userIsActive,
+  updateUser,
+  updateUserPict,
+  pool,
   } = require("./utils/sqlFunctions")
 const cookiesParser = require("cookie-parser")
 const cookieJwtAuth = require("./middleware/cookieJwtAuth")
@@ -24,16 +27,10 @@ const childSchema = require("./schemas/childSchema")
 // customize nama file foto yang user post menjadi uuid nya dan placement di folder uploads
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "./uploads")
+    cb(null, "./public/image")
   },
   filename: function (req, file, cb) {
-    const token = req.cookies.token
-    if (!token) {
-      console.log ("there is no token")
-      return
-    }
-    const nameFile = jwt.verify(token, process.env.JWT_SECRET)
-    cb(null, nameFile.userid + path.extname(file.originalname))
+    cb(null, uuidv4() + path.extname(file.originalname))
   }
 })
 const upload = multer({ storage: storage })
@@ -50,21 +47,48 @@ connectDB()
 
 app.get('/userInfo', cookieJwtAuth, (req, res)=>{
   const user = req.user
-  displayRecord('users', user.userid)
+  if (!user){
+    resp(401, "there is no user", "no token", res)
+  }
+  displayRecord('users', user.userid, res)
+})
+app.get('/otherUserInfo', cookieJwtAuth, (req, res)=>{
+  const user = req.query.user
+  if (!user){
+    resp(401, "there is no user", "no token", res)
+  }
+  displayRecord('users', user, res)
 })
 
 app.get('/unggahanInfo', cookieJwtAuth, (req, res)=>{
   const user = req.user
-  displayRecord('unggahan', user.userid)
+  displayRecord('unggahan', user.userid, res)
 })
 
 app.get('/childInfo', cookieJwtAuth, (req, res)=>{
   const user = req.user
-  displayRecord('anak', user.userid)
+  displayRecord('anak', user.userid, res)
+})
+
+app.post('/userUpdate', (req, res)=>{
+  const token = req.cookies.token
+    if (!token) {
+      console.log ("there is no token")
+      return
+    }
+    const user = jwt.verify(token, process.env.JWT_SECRET)
+    const {nama, email, alamat, tanggalLahir, noWa, bank, noRek} = req.body
+    try {
+      updateUser(user.userid, nama, email, alamat, tanggalLahir, noWa, bank, noRek)
+      resp(201, "good", "update succes", res)
+    } catch (error) {
+      resp(401, "eror", error, res)
+    }
 })
 
 // api untuk menyimpan foto user ke folder uploads
-app.post('/profilepict', upload.single('avatar'), (req, res)=>{
+app.post('/profilepict', cookieJwtAuth, upload.single('avatar'), async (req, res)=>{
+  await updateUserPict(req.user.userid, req.file.filename)
   res.json(req.file)
 })
 
@@ -84,6 +108,7 @@ app.post('/userChildren', async (req, res)=>{
       nama,
       tanggal_lahir,
     }
+    console.log(children)
     try {
       // console.log(childSchema)
       // await createTable(childSchema)
@@ -112,7 +137,13 @@ app.get('/findNearestUnggahan', (req, res)=>{
 //   const emailUser = req.params.userId
 //   resp()
 // })
-
+app.get("/image/:userid", async (req, res) => {
+  const { rows: [user] } = await pool.query("select profile from users where userid = $1", [req.params.userid])
+  if (user?.profile) {
+    return res.redirect("/image/" + user.profile)
+  }
+  return res.redirect("https://api.dicebear.com/9.x/personas/svg?seed=" + req.params.userid)
+})
 // api nge post unggahan
 app.post('/postUnggahan', (req, res)=>{
     const token = req.cookies.token

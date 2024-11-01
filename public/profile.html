@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Web Layout with Header, Page, and Footer</title>
+
+        <!-- Link ke file CSS eksternal -->
+        <!-- <link rel="stylesheet" href="css/styles.css"> -->
+        
+        <link href="css/output.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+ 
+        <style>
+            @layer base {
+              input[type="date"]::-webkit-datetime-edit {
+                @apply text-transparent;
+              }
+              input[type="date"]::-webkit-datetime-edit:focus {
+                @apply text-inherit;
+              }
+              input[type="date"]::-webkit-clear-button,
+              input[type="date"]::-webkit-calendar-picker-indicator {
+                @apply text-black;
+              }
+            }
+            
+            
+        </style>
+          
+        
+    </head>
+
+    <body>
+
+
+        <!-- Main Content (Bagian Tengah/Page)-->
+        <main>
+            <!--daftar page-->
+
+            <div id="profile-page" class="inset-0 max-w-full max-h-ful bg-gray-100 pt-1">
+                <div class="bg-gray-100 mx-auto max-h-[full] max-w-full">
+
+                    <ul class="flex overflow-x-auto no-scrollbar sm:justify-center whitespace-nowrap  bg-white text-primary text-[90%] font-montserrat font-bold px-auto mt-5 px-5">
+                        <li id="showMyProfile-btn" class="hover:underline px-[2%]"> My Profile </li>
+                        <li id="showDonors-btn" class="hover:underline px-[2%]"> Donors </li>
+                        <li id="showChangePass-btn" class=" hover:underline px-[2%]"> Change Password </li>
+                        <li id="logOutShowt-btn" class="hover:underline px-[2%]"> Logout </li>
+                    </ul>
+
+                    <!--my profile page-->
+                    <section id="myProfile-page" class="">
+                        <div class="md:flex justify-center md:p-10 p-5">
+                            <!-- ini foto profile-->
+                            <div class="relative w-[95%] md:w-[40%] aspect-square">
+                                <h1 class="text-center font-montserrat font-bold text-primary mx-auto w-[70%] pb-[3%] text-[150%]">My Profile</h1>
+                                <div class="relative w-[80%] aspect-square mx-auto mb-4 ">
+                                    <img src="image/bg-profile.svg" class="absolute w-[100%]">
+                                    <img id="profile-pic" src="image/mp_menyusui.png" class="absolute w-[68%] top-[3%] left-[30%] aspect-square rounded-full object-cover bg-cover bg-center hover:opacity-[50%]" alt="Profile Picture">
+                                    
+                                </div>
+                            </div>
+    
+                            <!-- Modal for choosing the action -->
+                            <div id="choice-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div class="bg-white p-4 rounded-lg">
+                                    <h2 class="mb-4">Choose an option</h2>
+                                    <button id="choose-gallery" class="bg-blue-500 text-white py-2 px-4 rounded mb-2 w-full">Select from Gallery</button>
+                                    <button id="choose-camera" class="bg-green-500 text-white py-2 px-4 rounded w-full">Take a Photo</button>
+                                </div>
+                            </div>
+                        
+                          <input type="file" id="file-input" accept="image/*" class="hidden">
+                          
+                          <!-- Video stream for capturing photos -->
+                          <div id="camera-modal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+                                <div class="bg-white p-4 rounded-lg">
+                                <video id="video" width="320" height="240" autoplay class="bg-gray-200"></video>
+                                <button id="take-photo" class="bg-red-500 text-white py-2 px-4 rounded mt-2 w-full">Capture Photo</button>
+                                <button id="close-camera" class="bg-gray-500 text-white py-2 px-4 rounded mt-2 w-full">Close Camera</button>
+                                </div>
+                          </div>
+                        
+                          <canvas id="canvas" class="hidden"></canvas>
+
+                            <!--ini tampilan dari my profile-->
+    
+                            <form  class="m-5 p-2 md:w-[60%] ">
+                            
+                                <div class="relative my-[5%] w-full md:w[50%]">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Nama</a>
+                                    <input
+                                        id="nama-field"
+                                        type="Nama"
+                                        class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                        placeholder="Masukkan Nama"
+                                    />        
+                                        
+                                </div>
+                                
+                                <div class="relative my-[5%] w-full md:w[50%]">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Email</a>
+                                    <input
+                                        id="email-field"
+                                        type="email"
+                                        class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                        placeholder="Masukkan Email"
+                                    />        
+                                        
+                                </div>
+                                <div class="relative my-[5%] w-full md:w[50%]">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Alamat</a>
+                                    <input
+                                        id="alamat-field"
+                                        type="Alamat"
+                                        class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                        placeholder="Masukkan Alamat"
+                                    />        
+                                        
+                                </div>
+                                <div class="relative my-[5%] w-full md:w[50%]">
+    
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">tanggal lahir</a>
+                        
+                                    <input
+                                    id="tanggalLahir-field"
+                                    type="date"
+                                    class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                    placeholder=""
+                                    />
+                                   
+                        
+                                </div>
+
+                                <div class="relative my-[5%] w-full md:w[50%]">
+    
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">Nomor Whatsapp</a>
+                                    <input
+                                    id="nohp-field"
+                                    type="number"
+                                    class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                    placeholder="Masukkan Nomor Whatsapp anda"
+                                    />
+                                </div>
+                                <div class="relative my-[5%] w-full md:w[50%]">
+    
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">Nama Bank</a>
+                        
+                                    <input
+                                    id="bank-field" 
+                                    type="tex"
+                                    class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                    placeholder="Masukkan nama Bank yang anda gunakan"
+                                    />
+                                </div>
+                                <div class="relative my-[5%] w-full md:w[50%]">
+    
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">No rekening</a>
+                        
+                                    <input
+                                    id="noRekening-field" 
+                                    type="number"
+                                    class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                    placeholder="Masukkan Nomor Rekening bank anda"
+                                    />
+                                </div>
+                                <div class="relative my-[5%] w-full md:w[50%]">
+    
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">Deskripsi Diri</a>
+                        
+                                    <input
+                                    id="deskripsiDiri-field" 
+                                    type="text"
+                                    class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                    placeholder="Deskripsikan diri anda dengan singkat"
+                                    />
+                                </div>
+                         
+                                <div class="relative my-[5%] w-full md:w[50%]">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black ms-[15px]">Unggah File PDF</a>
+                                    <input
+                                        type="file"
+                                        accept=".pdf"
+                                        id="pdf-upload"
+                                        class="file:bg-gradient-to-b file:from-primary file:to-primary 
+                                                file:rounded-full
+                                                w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm mb-4"
+                                        placeholder="Upload PDF"/>
+                                        <!--
+                                    <a> id="pdf-link" href="#" class="text-blue-500 underline hidden">Klik untuk melihat PDF</a>-->
+                                    <p id="file-status" class="text-sm text-red-500 mt-2"></p>
+                                </div>
+                                
+                                <div class="flex p-2 mx-auto whitespace-nowrap w-[40%]">
+                                    <button
+                                        id="ubahData-btn" onclick="updateProfilClick()"
+                                        class="w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-bold text-white"
+                                        >
+                                        Ubah Data Profile
+                                    </button>
+                                </div>
+                    
+                            </form>
+    
+                             <!-- ini adalah bagian your family-->
+                            <div id="family-page" class="outline bg-white rounded-md max-w-[80%] md:w-[25%] max-h-[450px] min-h-[300px] my-[70px] mx-auto md:me-[100px] overflow-y-auto">
+                                <a class="font-montserrat font-bold text-[20px] m-[20px]">
+                                    Your Family
+                                </a>
+    
+                                <div id="family-list">
+                                    <!-- This is where the family list will appear dynamically -->
+                                </div>
+                                
+                                <div id="tambah-family-btn" class="m-5 flex">
+                                    <img src="image/tambah_family.svg" class="w-[35px]">
+                                    <a class=" font-montserrat font-light text-black text-[15px] m-2">
+                                        Add Other
+                                    </a>
+                                </div>
+          
+                            </div>
+                            
+                        </div>
+    
+                        <!-- <div class="hidden">
+                            <div class="flex bg-transparent">
+                                <img id="profile-family" >
+                                <div>
+                                    <a id="nama-family" ></a>
+                                    <a id="lahir-family"></a>
+                                </div>
+                            </div>
+                            
+                        </div> -->
+    
+                        <div id="tambah-family-page" class=" hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                            <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[full] max-w-[300px]">
+                                <a id="closeTambahFamily-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                                <h1 class="text-center font-montserrat font-bold text-primary">Tambah Family</h1>
+                            
+                            
+                                <form  class="m-1 p-2">
+                                            
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Nama</a>
+                                        <input
+                                            id="input-nama-family"
+                                            type="Nama"
+                                            class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm"
+                                            placeholder="Enter name"
+                                        />        
+                                            
+                                    </div>
+                                    
+                                    
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">tanggal lahir</a>
+                                        <input id="input-lahir-family" type="date" class="w-full rounded-full outline bg-white p-2  text-sm shadow-sm" placeholder=""
+                                    >
+                                    
+            
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Unggah Foto</a>
+                                        <input
+                                        type="file"
+                                        accept=".jpg, .jpeg, .png, .heic"
+                                        id="input-foto-family"
+                                        class="file:bg-gradient-to-b file:from-primary file:to-primary 
+                                                file:rounded-full
+                                                w-full rounded-full outline bg-white
+                                                p-2 text-sm shadow-sm"
+                                        placeholder="Upload image"
+                                        />
+                                        <!--
+                                        <a id="file-link" href="#" class="text-blue-500 underline hidden">Klik untuk melihat file</a>-->
+                                        <!-- <p id="image-status" class="text-sm text-red-500"></p> -->
+                                    </div>
+                                    
+                                    
+                                    <div class="flex p-2 justify-center">
+                                        <button
+                                            id="simpan-family-btn"
+                                            type="button"
+                                            class="max-w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-medium text-white"
+                                            >
+                                            Simpan Data
+                                        </button>
+                                    </div>
+                        
+                                </form>
+                            
+                            </div>
+                        </div>
+                    </section>
+                    
+                    <section id="donors-page" class="hidden">
+                        <div class="flex justify-around p-20 font-montserrat">
+                            <div class="flex flex-col bg-white rounded-2xl w-[250px] p-2 items-center max-h-[160px]">
+                                <div class="flex flex-col items-center">
+                                    <a class="font-semibold text-[15px]">Jadi Donatur?</a>
+                                    <label for="check" class="relative flex items-center justify-center cursor-pointer w-[120px] h-[35px] bg-gray-100 rounded-full border border-secondary transition-colors duration-500">
+                                    <input type="checkbox" id="check" onchange="handleActive(this)" class="sr-only peer" >
+                                    <!-- Bulatan toggle -->
+                                    <span id="slider" class="absolute left-0 w-[55px] h-[35px] bg-secondary rounded-2xl transition-all duration-500 peer-checked:left-[70px] peer-checked:bg-primary"></span>
+                                    <!-- Label "Tidak" dan "Iya" -->
+                                    <span id="toggleText" class="absolute left-3 text-white font-semibold text-sm">Tidak</span>
+                                    <span class="absolute right-4 text-white font-semibold text-sm">Ya</span>
+                                    </label>
+                                </div>
+                                <div class=" flex flex-col">
+                                    <a class="font-semibold text-[15px]">Hadiah dari Donasi</a>
+                                    <div class="flex font-bold text-[20px]">
+                                        <a>RP.</a>
+                                        <a id="nominal-hadiah">9999999999</a>
+                                    </div>
+                                    <a id="tombol-transfer" class="font-medium text-[13px] text-white text-center bg-primary rounded-2xl h-[20px] m-2 p-0.5"> Transfer</a>
+                                </div>
+                            </div>
+                            <div id="penerima-page" class="border bg-white rounded-md w-[400px] h-[550px] overflow-y-auto">
+                                <a class="font-montserrat font-bold text-[20px] m-[20px]">
+                                    Riwayat Penerima
+                                </a>
+    
+                                <div id="penerima-list">
+                                    <!-- This is where the family list will appear dynamically -->
+                                </div>
+                                
+                            </div>
+                            <div id="diterima-page" class="border bg-white rounded-md w-[400px] h-[550px] overflow-y-auto">
+                                <a class="font-montserrat font-bold text-[20px] m-[20px]">
+                                    Riwayat Diterima
+                                </a>
+    
+                                <div id="diterima-list">
+                                    <!-- This is where the family list will appear dynamically -->
+                                </div>
+                                
+                                <div id="diterimaTambah-btn" class="m-5 flex">
+                                    <img src="image/tambah_family.svg" class="w-[35px]">
+                                    <a class=" font-montserrat font-light text-black text-[15px] m-2">
+                                        Add Other
+                                    </a>
+                                </div>
+    
+                            </div>
+                        </div>
+                        <div id="tambahDiterimaDonatur-page" class=" hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                            <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[full] max-w-[300px]">
+                                <a id="closeTambahDiterimaDonatur-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                                <h1 class="text-center font-montserrat font-bold text-primary">Tambah Riwayat Diterima</h1>
+                            
+                            
+                                <form action="#" class="m-1 p-2">
+                                            
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Nama</a>
+                                        <input
+                                            id="input-namaRiwayatDiterima"
+                                            type="Nama"
+                                            class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm"
+                                            placeholder="Enter name"
+                                        />        
+                                            
+                                    </div>
+                                    
+                                    
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">tanggal lahir</a>
+                                        <input id="input-lahirRiwayatDiterima" type="date" class="w-full rounded-full outline bg-white p-2  text-sm shadow-sm" placeholder=""
+                                    >
+                                    
+            
+                                    <div class="relative my-[5%] w-full">
+                                        <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Unggah Foto</a>
+                                        <input
+                                        type="file"
+                                        accept=".jpg, .jpeg, .png, .heic"
+                                        id="input-fotoRiwayatDiterima"
+                                        class="file:bg-gradient-to-b file:from-primary file:to-primary 
+                                                file:rounded-full
+                                                w-full rounded-full outline bg-white
+                                                p-2 text-sm shadow-sm"
+                                        placeholder="Upload image"
+                                        />
+                                        <!--
+                                        <a id="file-link" href="#" class="text-blue-500 underline hidden">Klik untuk melihat file</a>-->
+                                        <!-- <p id="image-status" class="text-sm text-red-500"></p> -->
+                                    </div>
+                                    
+                                    
+                                    <div class="flex p-2 justify-center">
+                                        <button
+                                            id="simpan-familyRiwayatDiterima"
+                                            class="max-w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-medium text-white"
+                                            >
+                                            Simpan Data
+                                        </button>
+                                    </div>
+                        
+                                </form>
+                            
+                            </div>
+                        </div>
+                        
+
+                    </section>
+
+                    <!--joining-->
+                    <div id="joining-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                        <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[full] max-w-[400px]">
+                          <a id="joinClose-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold">x</a>
+                          <h1 class="text-center font-montserrat font-bold text-primary">Joining Form</h1>
+                          <div class="font-montserrat-mediun text-black text-[60%] text-center p-[5%]">
+                            <p>Selamat datang!</p>
+                            <p>Isi form dibawah ini untuk bergabung bersama kami</p>
+                          </div>
+                          <form action="#" class="m-1 p-2">
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">Bank</a>
+                              <input id="bank-insert" type="text" class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm" placeholder=""/>
+                            </div>
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">No. Rekening</a>
+                              <input id="noRek-insert" type="text" class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm" placeholder=""/>
+                            </div>
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">Riwayat Penyakit (kosongkan jika tidak ada)</a>
+                              <input id="riwayat-insert" type="text" class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm" placeholder=""/>
+                            </div>
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">Nomor Handphone</a>
+                              <input id="phone-insert" type="text" class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm" placeholder="+62"/>
+                            </div>
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">Deskripsikan dirimu (minimal 30 kata)</a>
+                              <input id="desc-insert" type="text" class="w-full rounded-full outline bg-white p-2 text-sm shadow-sm" placeholder=""/>
+                            </div>
+                            <div class="relative my-[5%] w-full md:w[50%]">
+                              <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[10px]">Surat Keterangan Sehat (Maksimal 1 bulan)</a>
+                              <input type="file" accept=".pdf" id="surat-insert" class="file:bg-gradient-to-b file:from-primary file:to-primary file:rounded-full w-full rounded-full outline bg-white p-2 text-sm shadow-sm mb-4" placeholder="Upload image"/>
+                              <p id="surat-status" class="text-sm text-red-500"></p>
+                            </div>
+                            <div class="flex p-[3px]">
+                                <svg id="setujuJoin-btn" width="18" height="19" viewBox="0 0 18 19" fill="rgb(229, 229, 229)" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M3.25 0.577393C1.45507 0.577393 0 2.03247 0 3.82739V15.3274C0 17.1223 1.45508 18.5774 3.25 18.5774H14.75C16.5449 18.5774 18 17.1223 18 15.3274V3.82739C18 2.03246 16.5449 0.577393 14.75 0.577393H3.25ZM14.28 6.85803L7.5263 13.604C7.2333 13.8966 6.75868 13.8964 6.46591 13.6036L3.72014 10.8577C3.42726 10.5648 3.42727 10.0899 3.72018 9.79699C4.01308 9.50419 4.48795 9.50419 4.78084 9.79709L6.99658 12.013L13.22 5.79675C13.513 5.50403 13.9879 5.5043 14.2806 5.79737C14.5734 6.09043 14.5731 6.5653 14.28 6.85803Z" />
+                                </svg>
+                                <a class="font-montserrat font-medium text-[10px] text-black m-[3px]">Dengan ini Anda menyatakan setuju dengan persyaratan dan aturan dari kami</a>
+                            </div>
+                            <div class="flex p-2 justify-center">
+                              <button id="join-btn" class="max-w-full rounded-full bg-gray-200 px-3 py-1 text-[80%] font-montserrat font-medium text-white">Join Us!</button>
+                            </div>
+                          </form>
+                        </div>
+                    </div>
+                      
+
+                    
+
+                    <!-- <div class="">
+                        <div class="flex bg-transparent">
+                            <img id="profile-family" >
+                            <div>
+                                <a id="nama-family" ></a>
+                                <a id="lahir-family"></a>
+                            </div>
+                        </div>
+                        
+                    </div> -->
+
+                    <!-- <div id="ubahData-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                        <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[full] max-w-[300px]">
+                            <a id="close-edit-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                            <h1 class="text-center font-montserrat font-bold text-primary">Ubah Data</h1>
+                        
+                        
+                            <form action="#" class="m-1 p-2">
+                                        
+                                <div class="relative my-[5%] w-full">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Nama</a>
+                                    <input
+                                        id="input-nama-family"
+                                        type="Nama"
+                                        class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm"
+                                        placeholder="Enter name"
+                                    />        
+                                        
+                                </div>
+                                
+                                
+                                <div class="relative my-[5%] w-full">
+                                    <a class="text-start font-montserrat font-medium text-[80%] mx-[10px] text-black">tanggal lahir</a>
+                                    <input id="input-lahir-family" type="date" class="w-full rounded-full outline bg-white p-2 md:pe-6 text-sm shadow-sm" placeholder="">
+                                
+
+                                <div class="relative my-[5%] w-full">
+                                    <a class="text-start font-montserrat font-medium text-[80%] text-black mx-[15px]">Unggah Foto</a>
+                                    <input
+                                    type="file"
+                                    accept=".jpg, .jpeg, .png, .heic"
+                                    id="input-foto-family"
+                                    class="file:bg-gradient-to-b file:from-primary file:to-primary 
+                                            file:rounded-full
+                                            w-full rounded-full outline bg-white
+                                            p-2 md:pe-6 text-sm shadow-sm mb-4"
+                                    placeholder="Upload image"
+                                    />
+                                    <p id="image-status" class="text-sm text-red-500"></p>
+                                </div>
+                                
+                                
+                                <div class="flex p-2 justify-center">
+                                    <button
+                                        id="simpan-data-btn"
+                                        class="max-w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-medium text-white"
+                                        >
+                                        Simpan Data
+                                    </button>
+                                </div>
+                    
+                            </form>
+                        </div>
+                    </div> -->
+
+                               
+                </div>
+            </div>
+
+            <!--logout page-->
+            <div id="logout-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[450px] max-w-[300px]">
+                    <h1 class="text-center text-7 pt-4   font-montserrat font-bold text-primary">yakin mau keluar?</h1>
+                
+                
+                    <div class="flex justify-evenly rounded-lg p-4 ">
+                        
+                        <!-- tombol yakin-->
+                        <button
+                        id="closeLogout-btn"
+                            class="block  rounded-2xl text-md border border-current font-montserrat font-bold px-2 transition text-primary"
+                            >
+                            belum nih
+                        </button>
+                        <!-- tombol belum -->
+                        <button
+                            id="login-selesai-btn"
+                            class="block rounded-2xl bg-primary px-5 text-md font-montserrat font-bold text-white"
+                            onclick="logout()"
+                            >
+                            Yakin!
+                        </button>
+
+    
+                    </div>
+                </div>
+            </div>
+
+            <!--change pass page-->
+            <div id="changePass-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[450px] max-w-[300px]">
+                    <a id="closeChange-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                    <h1 class="text-center text-7 font-montserrat font-bold text-primary">Change Password</h1>
+                
+                
+                    <form action="#" class="mb-0 mt-2 space-y-2 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+                        
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-black text-[60%] mx-[10px]">Password Lama</a>
+                
+                            <input
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                        </div>
+
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-black text-[60%] mx-[10px]">Password Baru</a>
+                
+                            <input
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                        </div>
+
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-black text-[60%] mx-[10px]">Konfirmasi Password</a>
+                
+                            <input
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                        </div>
+
+                        <!-- tombol login selesai -->
+                        <button
+                        id="changePass-btn"
+                        class="block w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-bold text-white"
+                        >
+                        Ganti Password
+                        </button>
+
+                    
+                    </form>
+                </div>
+            </div>
+            
+        </main>
+        
+          
+
+    </body>
+
+  
+</html>
+

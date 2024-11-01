@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Web Layout with Header, Page, and Footer</title>
+
+        <!-- Link ke file CSS eksternal -->
+        <!-- <link rel="stylesheet" href="css/styles.css"> -->
+        
+        <link href="css/output.css" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500;600;700;800&display=swap" rel="stylesheet">
+        <script defer src="index.js"></script>
+        <style>
+            #navbar {
+              position: relative; /* Ensure navbar stays in normal flow */
+              z-index: 10; /* Make sure it stays on top */
+            }
+          </style>
+    </head>
+
+    <body id="main-page" class="">
+
+        <!-- Header (Bagian atas) -->
+        <div id="navbar"></div>
+        <!-- Main Content (Bagian Tengah/Page)-->
+        <main >
+
+            <section id="home-page" class="bg-gray-100">
+                <div class="bg-tertiary md:flex md:gap-4 p-2 md:px-8 items-center">
+
+                    <img class="order-1 md:order-2 md:w-[45%]" 
+                        src="image/mp_menyusui.png" 
+                        alt="Image description">
+    
+                    <div class="order-2 md:order-1 justify-center text-primary md:m-8">
+                        <h2 id="halo-user" class="font-montserrat font-medium">
+                            hallo, bunda
+                        </h2>
+                        <h1 class="font-montserrat font-bold ">
+                            DONASI ASI UNTUK SI KECIL
+                        </h1 class="font-montserrat font-semibold">
+                        <p class="line-clamp-2 md:line-clamp-none">Platform berbagi kasih sayang dan saling membantu sesama orang tua. Donasikan ASI Anda atau temukan pendonor ASI untuk mendukung tumbuh kembang anak-anak kita!</p>
+                            
+                    </div>
+                        
+                </div>
+    
+                <!-- berita 1-->
+                <h1 class="font-montserrat font-semibold text-primary pt-[15%] ps-[5%] text-[120%]">
+                    Artikel Terkini
+                </h1>
+    
+                <article >
+    
+                    <div class="flex overflow-x-auto no-scrollbar m-3">
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                alt=""
+                                src="image/mp_menyusui.png"
+                                class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena
+                                </a>
+                            
+                                <p class="line-clamp-3 montserrat-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                alt=""
+                                src="image/mp_menyusui.png"
+                                class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI Eksklusif Tekan Biaya Kesehatan
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                    alt=""
+                                    src="image/mp_menyusui.png"
+                                    class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI Eksklusif Tekan Biaya Kesehatan
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                alt=""
+                                src="image/mp_menyusui.png"
+                                class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena mengurangi risiko penularan penyakit.
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                    </div>
+    
+                </article>
+    
+                <!-- berita 2-->
+    
+                <h1 class="font-montserrat font-semibold text-primary ps-[5%] text-[120%]">
+                    Artikel Populer
+                </h1>
+    
+                <article >
+    
+                    <div class="flex overflow-x-auto no-scrollbar m-3">
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                alt=""
+                                src="image/mp_menyusui.png"
+                                class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena mengurangi risiko penularan penyakit.
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                    alt=""
+                                    src="image/mp_menyusui.png"
+                                    class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena mengurangi risiko penularan penyakit.
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                    alt=""
+                                    src="image/mp_menyusui.png"
+                                    class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena mengurangi risiko penularan penyakit.
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                        <section class="flex-shrink-0 rounded-md bg-white border border-black30 transition md:flex hover:shadow-xl size-[80%] md:max-w-[60%] items-center md:m-10 m-5">
+    
+                            <div class=" w-[60%]">
+                                <img
+                                alt=""
+                                src="image/mp_menyusui.png"
+                                class=" "
+                                />
+                            </div>
+                            
+                            <div class=" md:p-5 p-2 md:w-3/4">
+                                
+                                <a href="#" class="line-clamp-2 font-montserrat font-semibold text-black text-[85%]">
+                                    Pemberian ASI eksklusif kepada bayi dapat menekan biaya perawatan kesehatan karena mengurangi risiko penularan penyakit.
+                                </a>
+                            
+                                <p class="line-clamp-3 font-montserrat font-medium text-black text-[65%] pt-[5%] pb-auto">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Recusandae dolores, possimus
+                                    pariatur animi temporibus nesciunt praesentium dolore sed nulla ipsum eveniet corporis
+                                    quidem, mollitia itaque minus soluta, voluptates neque explicabo tempora nisi culpa eius
+                                    atque dignissimos. Molestias explicabo corporis voluptatem?
+                                </p>
+                            
+                                <div class="p-2">
+                                    <a
+                                        href="#"
+                                        class="bg-primary font-montserrat font-bold text-[55%] text-white rounded-1 px-2 py-[7px]"
+                                        >
+                                        Baca Selengkapnya
+                                    </a>
+                                </div>
+                            </div>
+                        </section>
+    
+                    </div>
+                    
+                </article>
+            </section>
+
+            <!--profile page-->
+            <div id="profile-content" class="hidden "></div>
+
+            <!--Artikel page-->
+            <div id="artikel-content" class="hidden "></div>
+
+            <!--bagasi page-->
+            <div id="bagasi-content" class="hidden "></div>
+
+            <!--donate page-->
+            <div id="donate-content" class="hidden "></div>
+
+            <!--artikel page-->
+            <div id="artikel-content" class="hidden "></div>
+
+            <!--about page-->
+            <div id="about-content" class="hidden "></div>
+
+            <!--contact page-->
+            <div id="contact-content" class="hidden "></div>
+ 
+
+            <!--login page-->
+            <div id="login-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[450px] max-w-[300px]">
+                    <a id="close-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                    <h1 class="text-center text-7 font-montserrat font-bold text-primary">Login</h1>
+                
+                    <div class="font-montserrat-mediun text-black text-[60%] text-center p-[5%]">
+                        <p class="">Selamat datang!</p>
+                        <p class="">Masuk dan jelajahi informasi untuk buah hati Anda</p>
+                    </div>
+                
+                    <form action="#" class="mb-0 mt-2 space-y-2 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
+                        
+                        <div>
+                            <label for="email" class="sr-only">Email</label>
+
+                            <a class="text-start font-montserrat font-medium text-black text-[60%] mx-[15px]">Email</a>
+                    
+                            <div class="relative">
+                                
+                                <input
+                                    id="email-login"
+                                    type="email"
+                                    class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                                    placeholder="Enter email"
+                                />
+                                
+                            </div>
+                        </div>
+                
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-black text-[60%] mx-[10px]">Password</a>
+                
+                            <input
+                            id="password-login"
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                        </div>
+
+                        <!-- link lupa password -->
+
+                        <a id="lupaPass-login" class="text-start font-montserrat-light text-[50%] mx-[10px]">Lupa Password?</a>
+                
+
+                        <!-- tombol login selesai -->
+                        <button
+                        id="login-selesai-btn" onclick="loginClick()"
+                        class="block w-full rounded-full bg-primary px-3 py-1 text-[80%] font-montserrat font-bold text-white"
+                        >
+                        Login
+                        </button>
+
+                        <!-- tombol daftar-->
+                        <button
+                        id="daftarLogin-btn" 
+                            class="block w-full rounded-full text-[80%] border border-current font-montserrat font-bold px-3 py-1 transition text-primary"
+                            href="#"
+                            >
+                            Baru Pertama Kali?
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!--daftar page-->
+            <div id="daftar-page" class="hidden backdrop-blur-md fixed z-10 inset-0 mx-auto px-4 py-4 sm:px-6 lg:px-8">
+                <div class="bg-gray-100 rounded-[3%] mx-auto max-h-[full] max-w-[300px]">
+                    <a id="close-2-btn" class="justify-start text-[100%] p-[3%] font-montserrat font-bold"> x</a>
+                    <h1 class="text-center text-7 font-montserrat font-bold text-primary">sign in</h1>
+                
+                    <div class="font-montserrat-mediun text-black text-[60%] text-center p-[5%]">
+                        <p class="">Selamat datang!</p>
+                        <p class="">Masuk dan jelajahi informasi untuk buah hati Anda</p>
+                    </div>
+                
+                    <form  class="m-1 p-2">
+                        
+                        <div class="relative">
+                            <a class="text-start font-montserrat font-medium text-[60%] text-black mx-[15px]">Nama</a>
+                            <input
+                                id="nama-register"
+                                type="Nama"
+                                class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                                placeholder="Enter name"
+                            />        
+                                
+                        </div>
+                        <div class="relative">
+                            <a class="text-start font-montserrat font-medium text-[60%] text-black mx-[15px]">Alamat</a>
+                            <input
+                                id="alamat-register"
+                                type="Alamat"
+                                class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                                placeholder="Enter address"
+                            />        
+                                
+                        </div>
+                        <div class="relative">
+                            <a class="text-start font-montserrat font-medium text-[60%] text-black mx-[15px]">Email</a>
+                            <input
+                                id="email-register"
+                                type="email"
+                                class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                                placeholder="Enter email"
+                            />        
+                                
+                        </div>
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-[60%] mx-[10px] text-black">Password</a>
+                
+                            <input
+                            id="password-register"
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                
+                        </div>
+                        <div class="relative">
+
+                            <a class="text-start font-montserrat font-medium text-[60%] mx-[10px] text-black">Konfirmasi Password</a>
+                
+                            <input
+                            id="konfirmPass-register"
+                            type="password"
+                            class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                            placeholder="Enter password"
+                            />
+                
+                        </div>
+                        <div class="relative">
+                            <a class="text-start font-montserrat font-medium text-[60%] text-black mx-[15px]">Tanggal Lahir</a>
+                            <input
+                                id="tanggalLahir-register"
+                                type="date"
+                                class="w-full rounded-full border-gray-200 p-2 pe-6 text-sm shadow-sm"
+                                placeholder="Enter date"
+                            />        
+                                
+                        </div>
+                        <div class="flex p-2 justify-center">
+                            <button
+                                id="daftar-selesai-btn" onclick="registerClick()"
+                                class="w-[50%] rounded-full bg-primary px-3 py-1 text-[80%] montserrat-bold text-white"
+                                >
+                                Sign in
+                            </button>
+                        </div>
+                
+                        
+
+                    </form>
+                </div>
+            </div>
+
+            
+
+        </main>
+          
+
+        <!--Footer (Bagian bawah) -->
+        <footer class="block bg-primary p-14">
+            <ul class="flex font-montserrat mx-20">
+                <li>
+                    <img class="h-36 w-36" src="image/logo.svg" alt="">
+                </li>
+                <li class=" flex flex-col pe-40">
+                    <h1 class="font-bold text-white text-2xl"> Quick Links</h1>
+                    <a id="footer-home" class="font-medium text-gray-200 text-base">Home</a>
+                    <a id="footer-artikel" class="font-medium text-gray-200 text-base">Artikel</a>
+                    <a id="footer-about" class="font-medium text-gray-200 text-base">About</a>
+                    <a id="footer-bagasi" class="font-medium text-gray-200 text-base">Bagasi</a>
+                </li>
+                <li class=" flex flex-col pe-40">
+                    <h1 class="font-bold text-white text-2xl">Contact</h1>
+                    <a id="footer-home" class="font-medium text-gray-200 text-base">bagasi@gmail.com</a>
+                    
+                </li>
+                <li class=" flex flex-col">
+                    <h1 class="font-bold text-white text-2xl">Social Media</h1>
+                    <div class="flex justify-evenly">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37a4 4 0 1 1-4.73-4.73 4 4 0 0 1 4.73 4.73z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                          </svg>
+                          
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#E5E7EB" stroke="#E5E7EB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin">
+                            <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"></path>
+                            <rect x="2" y="9" width="4" height="12"></rect>
+                            <circle cx="4" cy="4" r="2"></circle>
+                          </svg>
+                          
+                    </div>
+                </li>
+                
+            </ul>
+            <a class=" flex justify-center items-center">
+                <svg width="850" height="2">
+                    <line x1="0" y1="1" x2="850" y2="1" stroke="#E5E7EB" stroke-width="2" />
+                    
+                </svg>
+            </a>
+            
+            <p class="flex font-montserrat font-medium text-sm text-gray-200 ps-64 pt-5">Hak Cipta &copy; 2024 Bagasi</p>
+        </footer>
+        
+
+    </body>
+  
+</html>
+
