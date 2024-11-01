@@ -1,8 +1,9 @@
 const { Pool } = require("pg")
 const config = require("./config")
 
+let pool
 const connectDB = async () => {
-  const pool = new Pool(config)
+  pool ||= new Pool(config)
 
   try {
     const client = await pool.connect() 
