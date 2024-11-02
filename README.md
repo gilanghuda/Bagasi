@@ -84,6 +84,9 @@ Here is a description of our application's development process.
 ## 📚 Figma
 https://www.figma.com/design/MnyCU0gSbUrsisOw573JDt/Projek_Hology?node-id=0-1&node-type=canvas&t=1OrA8J5D3S4LBsXN-0
 
+## 📖 Prototype
+https://www.figma.com/proto/MnyCU0gSbUrsisOw573JDt/Projek_Hology?node-id=0-1&t=HWqMAgGXHV9jYtXY-1
+
 ## 🐨 Credit
 
 1. Gilang Fachrul Huda
